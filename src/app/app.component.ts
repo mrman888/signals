@@ -14,7 +14,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   //imports: [SignalsComponent],
   imports: [SignalsComponent, HttpClientModule],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   private destroyRef = inject(DestroyRef);
   // constructor() {
   //   inject(DestroyRef).onDestroy(() => {
