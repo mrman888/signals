@@ -67,6 +67,16 @@ export class SignalsComponent {
   effectSig!: EffectRef;
   title = 'angular-signals';
 
+  constructor() {
+    // this.effectSig = effect(() => {
+    //   alert(
+    //     `side effect angular signal after movie changes ${JSON.stringify(
+    //       this.movieSig()
+    //     )}`
+    //   );
+    // });
+  }
+
   setMovie() {
     this.movieSig.set({
       name: 'Spider-Man',
@@ -92,6 +102,14 @@ export class SignalsComponent {
   }
 
   createEffect() {
+    // this.effectSig = effect(() => {
+    //   alert(
+    //     `side effect angular signal after movie changes ${JSON.stringify(
+    //       this.movieSig()
+    //     )}`
+    //   );
+    // });
+
     runInInjectionContext(
       this.injector,
       () =>
