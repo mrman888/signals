@@ -15,7 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [SignalsComponent, HttpClientModule],
 })
 export class AppComponent {
-  private destroyRef = inject(DestroyRef);
+  //private destroyRef = inject(DestroyRef);
   // constructor() {
   //   inject(DestroyRef).onDestroy(() => {
   //     // Writte your cleanup logic
@@ -26,14 +26,12 @@ export class AppComponent {
   //     debugger;
   //   });
   // }
-  constructor() {
-    ////.pipe(takeUntilDestroyed())
-
-    getPeople().subscribe((content: string) => {
-      debugger;
-    });
-  }
-
+  // constructor() {
+  //   ////.pipe(takeUntilDestroyed())
+  //   getPeople().subscribe((content: string) => {
+  //     debugger;
+  //   });
+  // }
   // ngOnInit() {
   //   getPeople()
   //     .pipe(takeUntilDestroyed(this.destroyRef))
