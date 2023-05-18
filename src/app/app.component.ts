@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { SignalsComponent } from './signals/signals.component';
 import { StarWarsService } from './core/star-wars.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +14,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   //imports: [SignalsComponent],
   imports: [SignalsComponent, HttpClientModule],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
   // constructor() {
   //   inject(DestroyRef).onDestroy(() => {
   //     // Writte your cleanup logic
@@ -32,4 +33,12 @@ export class AppComponent {
       debugger;
     });
   }
+
+  // ngOnInit() {
+  //   getPeople()
+  //     .pipe(takeUntilDestroyed(this.destroyRef))
+  //     .subscribe((content: string) => {
+  //       debugger;
+  //     });
+  // }
 }
