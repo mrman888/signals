@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-export class StarWarsService extends HttpService {
+export class StarWarsService {
+  baseUrl: string = 'https://swapi.dev/api';
+
+  constructor(protected http: HttpClient) {}
+
   getPeople(): Observable<string> {
-    return this.get<string>('people/1');
+    return this.http.get<string>(`${this.baseUrl}/people/1`);
   }
 }
