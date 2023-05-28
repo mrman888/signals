@@ -53,19 +53,19 @@ import { Movie } from './signals.interface';
   ],
 })
 export class SignalsComponent {
-  movieSig = signal<Movie | null>(null);
-  injector = inject(EnvironmentInjector);
-  newMovieSig = computed(() => {
+  movie = signal<Movie | null>(null);
+  newMovie = computed(() => {
     let newMovie = {
       name: 'Titanic',
       genre: 'Romance',
       releaseYear: 1997,
-      upVote: this.movieSig()?.upVote,
+      upVote: this.movie()?.upVote,
     };
     return newMovie;
   });
   effectSig!: EffectRef;
   title = 'angular-signals';
+  injector = inject(EnvironmentInjector);
 
   constructor() {
     // this.effectSig = effect(() => {
@@ -78,7 +78,7 @@ export class SignalsComponent {
   }
 
   setMovie() {
-    this.movieSig.set({
+    this.movie.set({
       name: 'Spider-Man',
       genre: 'Action, Aventure',
       releaseYear: 2002,
@@ -87,14 +87,14 @@ export class SignalsComponent {
   }
 
   updateMovie() {
-    this.movieSig.update((movie) => {
+    this.movie.update((movie) => {
       if (movie) movie.upVote = movie.upVote + 1;
       return movie;
     });
   }
 
   mutateMovie() {
-    this.movieSig.mutate((movie) => {
+    this.movie.mutate((movie) => {
       if (movie) {
         movie.upVote = 2000;
       }
@@ -116,7 +116,7 @@ export class SignalsComponent {
         (this.effectSig = effect(() => {
           alert(
             `side effect angular signal after movie changes ${JSON.stringify(
-              this.movieSig()
+              this.movie()
             )}`
           );
         }))
