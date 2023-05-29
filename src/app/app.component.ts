@@ -4,6 +4,7 @@ import { StarWarsService } from './core/star-wars.service';
 import { HttpClientModule } from '@angular/common/http';
 import { getPeople } from './core/starwars-function';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MyBaseComponent } from './shared/my-base/my-base.component';
 
 @Component({
   selector: 'app-root',

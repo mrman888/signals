@@ -10,6 +10,7 @@ import {
   inject,
   EnvironmentInjector,
   runInInjectionContext,
+  Input,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -53,25 +54,34 @@ import { Movie } from './signals.interface';
   ],
 })
 export class SignalsComponent {
+  /**********************************************
+   * 1. Defining first signal
+   *****************************************/
   movie = signal<Movie | null>(null);
-  newMovie = computed(() => {
-    let newMovie = {
-      name: 'Titanic',
-      genre: 'Romance',
-      releaseYear: 1997,
-      upVote: this.movie()?.upVote,
-    };
-    return newMovie;
-  });
+
+  /**********************************************
+   * 2. computed
+   *****************************************/
+  // newMovie = computed(() => {
+  //   return {
+  //     name: 'Titanic',
+  //     genre: 'Romance',
+  //     releaseYear: 1997,
+  //     upVote: this.movie()?.upVote,
+  //   };
+  // });
+
+  /**********************************************
+   * 3. Effect
+   *****************************************/
   effectSig!: EffectRef;
-  title = 'angular-signals';
   injector = inject(EnvironmentInjector);
 
   constructor() {
     // this.effectSig = effect(() => {
     //   alert(
     //     `side effect angular signal after movie changes ${JSON.stringify(
-    //       this.movieSig()
+    //       this.movie()
     //     )}`
     //   );
     // });
@@ -87,14 +97,14 @@ export class SignalsComponent {
   }
 
   updateMovie() {
-    this.movie.update((movie) => {
+    this.movie.update((movie: Movie | null) => {
       if (movie) movie.upVote = movie.upVote + 1;
       return movie;
     });
   }
 
   mutateMovie() {
-    this.movie.mutate((movie) => {
+    this.movie.mutate((movie: Movie | null) => {
       if (movie) {
         movie.upVote = 2000;
       }
